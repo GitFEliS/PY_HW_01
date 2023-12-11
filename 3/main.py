@@ -50,14 +50,30 @@ def wc(filenames: str):
         print(f'{total_lines:{digits}} {total_words:{digits}} {total_bytes} total')  # nopep8
 
 
-def tail_stdin():
-    lines = sys.stdin.readlines()[-10:]
+def wc_stdin():
+    lines = sys.stdin.read().split('\n')
+    words = [x for y in lines for x in y.split()]
+    total_lines = 0
+    total_bytes = 0
+    total_words = 0
+
     for line in lines:
-        print(line, end='')
+        total_bytes += len(line.encode())
+    total_lines += len(lines)
+    total_words += len(words)
+    if (lines[-1] == ''):
+        total_lines -= 1
+    total_bytes += total_lines
+    if total_bytes > 0:
+        digits = int(math.log10(total_bytes))+1  # для такого же форматирования
+    else:
+        digits = 7
+    digits = max(digits, 7)
+    print(f'{total_lines:{digits}} {total_words:{digits}} {total_bytes:{digits}}')  # nopep8
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         wc(sys.argv[1:])
     else:
-        tail_stdin()
+        wc_stdin()
