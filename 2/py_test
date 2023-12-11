@@ -1,0 +1,23 @@
+==> test <==
+HEADER
+\:
+END
+\:\:\:
+HEADER 2
+\:\:
+if __name__ == "__main__":
+    if len(sys.argv):
+        for file in sys.argv:
+            nl(file)
+
+==> main.py <==
+    lines = sys.stdin.readlines()[-17:]
+    for line in lines:
+        print(line, end='')
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        tail(sys.argv[1:])
+    else:
+        tail_stdin()

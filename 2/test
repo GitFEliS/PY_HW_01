@@ -1,0 +1,25 @@
+import sys
+
+
+def nl(filename: str):
+    f = open(filename, 'r')
+    if f.closed:
+        print(f"nl: {filename}: No such file or directory")
+        return
+    counter = 1
+    for line in f:
+        print(f"{counter}  {line}", end='')
+        counter += 1
+
+
+\:\:\:
+HEADER
+\:
+END
+\:\:\:
+HEADER 2
+\:\:
+if __name__ == "__main__":
+    if len(sys.argv):
+        for file in sys.argv:
+            nl(file)

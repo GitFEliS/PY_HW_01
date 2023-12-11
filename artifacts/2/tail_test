@@ -1,0 +1,10 @@
+HEADER
+\:
+END
+\:\:\:
+HEADER 2
+\:\:
+if __name__ == "__main__":
+    if len(sys.argv):
+        for file in sys.argv:
+            nl(file)
